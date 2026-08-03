@@ -51,3 +51,24 @@ ___17 July 2026___
  Problems:
  - I forgot to convert angles from degree to radius
  - Some name problems because I change a lot of things at this point
+
+
+
+___24 June 2026___
+
+ I was curios about git and github so I learned something about, opened a repository and posted AeroLab on it.
+ 
+ Problems:
+ - It was a bit complicated to post AeroLab
+ Learned:
+ - During this period I learned, beyond github, about numpy and matplotlib so now I have to understande where to use them.
+
+
+
+___3 August 2026___
+
+ Now the project is capable to chose the gravity to do the calculations like Earth, Mars and Moon
+ 
+ Problems:
+ - I made something wrong like making the environment egual to 1 rather then '1'
+ 
