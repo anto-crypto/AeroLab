@@ -1,59 +1,87 @@
-def mechanics_menu():
+import math
+
+
+def select_gravity():
+    from utils.constants import gravity
+
     print()
-    print('Mechanics Menu')
-    print('1 - Projectile Motion')
-    print('2 - Inclined Plane')
-    print('3 - Circular Motion')
-    print('0 - Back')
+    print('Environment gravity')
+    print('1 - Earth')
+    print('2 - Mars')
+    print('3 - Moon')
     print()
 
-    running = True
-    while running:
+    #Cheking the environment
+    while True:
+        try:
+            environment = int(input('Select the environment for the gravity: '))
+        except ValueError:
+            print('Error! Please chose one of the numbers requested.')
+
+        #Checking the G
+        if environment == 1:
+            g_x = gravity['Earth']
+            break
+        elif environment == 2:
+            g_x = gravity['Mars']
+            break
+        elif environment == 3:
+            g_x = gravity['Moon']
+            break
+        else:
+            print('Chose a number between 1 to 3.')
+
+    return g_x
+
+
+def generate_time_points(time):
+    time_list = []
+    i = 0
+    while i <= int(time):
+        time_list.append(i)
+        i += 0.5
+    time_list.append(time)
+    return time_list
+
+
+
+def mechanics_menu():
+
+    while True:
+
+        print()
+        print('Mechanics Menu')
+        print(' 1 - Projectile Motion')
+        print(' 2 - Inclined Plane')
+        print(' 3 - Circular Motion')
+        print(' 4 - Free Fall')
+        print(' 5 - Uniform Circular Motion')
+        print(' 6 - Centripetal Force')
+        print(' 0 - Back')
+        print()
+
         answer = input('Select one of the options: ')
+
         #Checking if the answer is one of the necessary numbers and not else
-        if answer in ['0', '1', '2', '3']:
+        if answer in ['0', '1', '2', '3', '4', '5', '6']:
             theme = int(answer)
 
             #The choice of theme
             if theme == 0:
-                running = False
+                break
 
             #Projectil Motion
             elif theme == 1:
-                print()
-                print('Environment gravity')
-                print('1 - Earth')
-                print('2 - Mars')
-                print('3 - Moon')
-                print()
-                #Cheking the environment
-                while True:
-                    try:
-                        environment = int(input('Select the environment for the gravity: '))
-                    except ValueError:
-                        print('Error! Please chose one of the numbers requested.')
-                    #Checking the G
-                    if environment == 1:
-                        from utils.constants import g_Earth
-                        g_x = g_Earth
-                        break
-                    elif environment == 2:
-                        from utils.constants import g_Mars
-                        g_x = g_Mars
-                        break
-                    elif environment == 3:
-                        from utils.constants import g_Moon
-                        g_x = g_Moon
-                        break
-                    else:
-                        print('Chose a number between 1 to 3.')
+                g_x = select_gravity()
+
                 #Checking if the velocity is a number
                 while True:
                     try:
                         velocity = float(input('Insert initial velocity (m/s): '))
                         break
                     except ValueError:
-                        print('Error! Its necessary to use only numbers (with dot). Try again')     
+                        print('Error! Its necessary to use only numbers (with dot). Try again')  
+
                 #Checking if the angle is a number
                 while True:
                     try:
@@ -61,26 +89,30 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #The data decoration
                 print()
-                name = 'The Data'
-                length = len(name)
+                name_data = 'The Data'
+                length = len(name_data)
                 print('*' * (10 + length))
-                print(name, ' ' * 6)
+                print(name_data, ' ' * 6)
                 print('*' * (10 + length))
                 print()
+
                 #The data
                 print(f'Velocity = {velocity} m/s')
                 print(f'θ = {angle}˚')
                 print(f'Gravity: {g_x} m/s²')
+
                 #Print decoration
                 print()
-                name = 'Projectile Results'
-                length = len(name)
+                name_result = 'Projectile Results'
+                length = len(name_result)
                 print('=' * (10 + length))
-                print(name, ' ' * 6)
+                print(name_result, ' ' * 6)
                 print('=' * (10 + length))
                 print()
+
                 #Results
                 from mechanics.projectile import calculate_flight_time
                 from mechanics.projectile import calculate_max_height
@@ -90,42 +122,38 @@ def mechanics_menu():
                 print(f'Range = {calculate_range(velocity, angle, g_x):.2f} m')
                 print()
 
+                #Graphic
+                import matplotlib.pyplot as plt
+                time_points = calculate_flight_time(velocity, angle, g_x)
+                l = generate_time_points(time_points)
+                x_list = []
+                y_list = []
+                for i in l:
+                    x = velocity * math.cos(math.radians(angle)) * i
+                    x_list.append(x)
+                    y = velocity * math.sin(math.radians(angle)) * i - 0.5 * g_x * math.pow(i, 2)
+                    y_list.append(y)
+                plt.plot(x_list, y_list, marker = '.',
+                                         markersize = 10,
+                                         markerfacecolor = 'blue')
+                plt.xlabel('Distance (m)')
+                plt.ylabel('Height (m)')
+                plt.title('Projectile Motion')
+                plt.grid(True)
+                plt.show()
+
             #Inclined Plane
             elif theme == 2:
-                print()
-                print('Environment gravity')
-                print('1 - Earth')
-                print('2 - Mars')
-                print('3 - Moon')
-                print()
-                #Cheking the environment
-                while True:
-                    try:
-                        environment = int(input('Select the environment for the gravity: '))
-                    except ValueError:
-                        print('Error! Please chose one of the numbers requested.')
-                    #Checking the G
-                    if environment == 1:
-                        from utils.constants import g_Earth
-                        g_x = g_Earth
-                        break
-                    elif environment == 2:
-                        from utils.constants import g_Mars
-                        g_x = g_Mars
-                        break
-                    elif environment == 3:
-                        from utils.constants import g_Moon
-                        g_x = g_Moon
-                        break
-                    else:
-                        print('Chose a number between 1 to 3.')
+                g_x = select_gravity()
+
                     #Checking if the height is a number
                 while True:
                     try:
                         height = float(input('Insert height (m): '))
                         break
                     except ValueError:
-                        print('Error! Its necessary to use only numbers (with dot). Try again')     
+                        print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #Checking if the angle is a number
                 while True:
                     try:
@@ -133,6 +161,7 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #Checking if the mu is a number
                 while True:
                     try:
@@ -140,6 +169,7 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #Checking if the initial velocity is a number
                 while True:
                     try:
@@ -147,38 +177,69 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #The data decoration
                 print()
-                name = 'The Data'
-                length = len(name)
+                name_data = 'The Data'
+                length = len(name_data)
                 print('*' * (10 + length))
-                print(name, ' ' * 6)
+                print(name_data, ' ' * 6)
                 print('*' * (10 + length))
                 print()
+
                 #The data
                 print(f'Height = {height} m')
                 print(f'θ = {angle}˚')
                 print(f'μ = {mu}')
                 print(f'Velocity = {velocity} m/s')
+                print(f'Gravity: {g_x} m/s²')
+
                 #Print
                 print()
-                name = 'Inclinated Plane Results'
-                length = len(name)
+                name_result = 'Inclinated Plane Results'
+                length = len(name_result)
                 print('=' * (10 + length))
-                print(name, ' ' * 6)
+                print(name_result, ' ' * 6)
                 print('=' * (10 + length))
                 print()
+
                 #Results
                 from mechanics.inclined_plane import calculate_acceleration
-                from mechanics.inclined_plane import final_velocity
                 from mechanics.inclined_plane import calculate_time
+                from mechanics.inclined_plane import calculate_final_velocity
                 print(f'Acceleration = {calculate_acceleration(mu, angle, g_x):.2f} m/s²')
-                print(f'Final Velocity = {final_velocity(height, velocity, angle, mu, g_x):.2f} m/s')
                 print(f'Time = {calculate_time(height, angle, mu, g_x):.2f} s')
+                print(f'Final Velocity = {calculate_final_velocity(height, velocity, angle, mu, g_x):.2f} m/s')
                 print()
+
+                #Graphic
+                import matplotlib.pyplot as plt
+                time_points = calculate_time(height, angle, mu, g_x)
+                acceleration = calculate_acceleration(mu, angle, g_x)
+                l = generate_time_points(time_points)
+                x_list = []
+                v_list = []
+                for i in l:
+                    x = velocity * i + 0.5 * acceleration * math.pow(i, 2)
+                    x_list.append(x)
+                    v = velocity + acceleration * i
+                    v_list.append(v)
+                figure, axes = plt.subplots(1, 2)
+                axes[0].plot(x_list, l, marker = '.')
+                axes[0].set_title('Space-Time')
+                axes[0].grid(True)
+                axes[0].set_xlabel('Space (m)')
+                axes[0].set_ylabel('Time (s)')
+                axes[1].plot(v_list, l, marker = '.')
+                axes[1].set_title('Velocity-Time')
+                axes[1].grid(True)
+                axes[1].set_xlabel('Velocity (m/s)')
+                axes[1].set_ylabel('Time (s)')
+                plt.show()
 
             #Circular Motion
             elif theme == 3:
+
                 #Checking if the initial velocity is a number
                 while True:
                     try:
@@ -186,6 +247,7 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #Checking if the radius is a number
                 while True:
                     try:
@@ -193,6 +255,7 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #Checking if the time is a number
                 while True:
                     try:
@@ -203,6 +266,7 @@ def mechanics_menu():
                             break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #Checking if the theta is a number
                 while True:
                     try:
@@ -213,28 +277,32 @@ def mechanics_menu():
                             break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
+
                 #The data decoration
                 print()
-                name = 'The Data'
-                length = len(name)
+                name_data = 'The Data'
+                length = len(name_data)
                 print('*' * (10 + length))
                 print(name, ' ' * 6)
                 print('*' * (10 + length))
                 print()
+
                 #The data
                 print(f'Velocity = {velocity} m/s')
                 print(f'Radius = {radius} m')
                 if velocity == 0:
                     print(f'θ = {theta}˚')
                     print(f'Time = {time} s')
+
                 #Print
                 print()
-                name = 'Circular Motion Results'
-                length = len(name)
+                name_result = 'Circular Motion Results'
+                length = len(name_result)
                 print('=' * (10 + length))
                 print(name, ' ' * 6)
                 print('=' * (10 + length))
                 print()
+
                 #Results
                 if velocity == 0:
                     from mechanics.circular_motion import calculate_angular_velocity
@@ -256,5 +324,20 @@ def mechanics_menu():
                     print(f'Period = {calculate_period_v(velocity, radius):.2f} s')
                     print(f'Frequency = {calcluate_frequency_v(velocity, radius):.2f} s^-1')
                     print()
+
+            #Free Fall
+            elif theme == 4:
+                continue
+
+            #Uniform Circular Force
+            elif theme == 5:
+                continue
+
+            #Centripetal Force
+            elif theme == 6:
+                continue
+
+
         else:
             print('Error! Its necessary to use only the numbers 0 or 1. Try again')
+

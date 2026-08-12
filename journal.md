@@ -1,6 +1,6 @@
 ___10 July 2026___
 
- I am organising my project and working in the requests of my main file
+	I am organising my project and working in the requests of my main file
  
  Problems:
  - I don't know how to open the folders when required
@@ -12,7 +12,7 @@ ___10 July 2026___
 
 ___11 July 2026___
  
- Trying to improve projectile.py file
+	Trying to improve projectile.py file
  
  Problems:
  - I had some difficulty with while cicles because if the request wasn't sadisfied I wnted it to continue asking for the right answer
@@ -24,7 +24,7 @@ ___11 July 2026___
 
 ___15 July 2026___
 
- I finde the way to accept float numbers by using try-except and I added my first formula to find the flight time
+	I finde the way to accept float numbers by using try-except and I added my first formula to find the flight time
  
  Problems:
  - Didn't know wery well how to use the math library
@@ -37,7 +37,7 @@ ___15 July 2026___
 
 ___16 July 2026___
 
- Added other formulas and tried to beautify the results. Instead of doing the calculation on the function of projectile_menu I make 3 functions that do the calculations.
+	Added other formulas and tried to beautify the results. Instead of doing the calculation on the function of projectile_menu I make 3 functions that do the calculations.
  
  Problems:
  - I was trying to finde out where the moltiplication for 2 of the angle in the sin function was to be
@@ -46,7 +46,7 @@ ___16 July 2026___
 
 ___17 July 2026___
 
- Like for the projectil motion I did other files like inclinated plane and circular motion
+	Like for the projectil motion I did other files like inclinated plane and circular motion
  
  Problems:
  - I forgot to convert angles from degree to radius
@@ -56,7 +56,7 @@ ___17 July 2026___
 
 ___24 June 2026___
 
- I was curios about git and github so I learned something about, opened a repository and posted AeroLab on it.
+	I was curios about git and github so I learned something about, opened a repository and posted AeroLab on it.
  
  Problems:
  - It was a bit complicated to post AeroLab
@@ -67,8 +67,45 @@ ___24 June 2026___
 
 ___3 August 2026___
 
- Now the project is capable to chose the gravity to do the calculations like Earth, Mars and Moon
+	Now the project is capable to chose the gravity to do the calculations like Earth, Mars and Moon
  
  Problems:
  - I made something wrong like making the environment egual to 1 rather then '1'
  
+ 
+ 
+ ___4 August 2026___
+
+	I try to adjust some things to make the project more readeble and interactive. Added some dictionary function just to show that am capable to use it
+  
+ Problems:
+  - I needet to review dictionary function on python because didn't remembered how to call the value from the key
+
+
+
+___6 August 2026___
+
+	Today I fixed the gravity request using a function so I don't need to write down everything for every section where needed. I also tryied to create graphics using matplotlib but had som dificults so I will see better next day.
+ 
+ Problems:
+ - Problem with matplotlib, I don't see the line of the graphic and also its very small
+
+
+
+___7 August 2026___
+
+	Today I learned about venv and decidet to use it in my project so it become more completed. Like I said yesterday I fixed the graphic.
+	
+ Problems:
+ - I had dificults in finding the problem on matplotlib
+ - Didn't remembered that while using 'for cicle' the funcion 'range' doesn't accept float numbers as step so I decidet to use a 'while cicle'
+
+
+
+___8 August 2026___
+
+	Today I made another graphic for the incline plane
+
+ Problems:
+ - I had problems with the formulas of the velocity because the results weren't egual so I change the old formula and make it egual to the new one where it depends on time
+ - I had problems with making the grphic using matplotlib but with some experiments I finde out the correct way
