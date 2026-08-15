@@ -1,4 +1,4 @@
-																__AEROLAB__
+# AEROLAB
 
 
 # AeroLab
@@ -9,6 +9,8 @@
 
 # What can it do?
 	AeroLab develops simulation tools to learn physics, mathematics and aerospace engineering. Inside it has a wide variety of formulas form various fields such as mechanics and thermodynamics, each accompained by its own graphs.
+
+![Risultato](images/code-01.jpg)
 
 # RoadMap:
 - v0.1

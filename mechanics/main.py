@@ -117,9 +117,9 @@ def mechanics_menu():
                 from mechanics.projectile import calculate_flight_time
                 from mechanics.projectile import calculate_max_height
                 from mechanics.projectile import calculate_range
-                print(f'Flight time = {calculate_flight_time(velocity, angle, g_x):.2f} s')
-                print(f'Maximum height = {calculate_max_height(velocity, angle, g_x):.2f} m')
-                print(f'Range = {calculate_range(velocity, angle, g_x):.2f} m')
+                print(f'Flight time = {calculate_flight_time(velocity, angle, g_x):.3f} s')
+                print(f'Maximum height = {calculate_max_height(velocity, angle, g_x):.3f} m')
+                print(f'Range = {calculate_range(velocity, angle, g_x):.3f} m')
                 print()
 
                 #Graphic
@@ -207,9 +207,9 @@ def mechanics_menu():
                 from mechanics.inclined_plane import calculate_acceleration
                 from mechanics.inclined_plane import calculate_time
                 from mechanics.inclined_plane import calculate_final_velocity
-                print(f'Acceleration = {calculate_acceleration(mu, angle, g_x):.2f} m/s²')
-                print(f'Time = {calculate_time(height, angle, mu, g_x):.2f} s')
-                print(f'Final Velocity = {calculate_final_velocity(height, velocity, angle, mu, g_x):.2f} m/s')
+                print(f'Acceleration = {calculate_acceleration(mu, angle, g_x):.3f} m/s²')
+                print(f'Time = {calculate_time(height, angle, mu, g_x):.3f} s')
+                print(f'Final Velocity = {calculate_final_velocity(height, velocity, angle, mu, g_x):.3f} m/s')
                 print()
 
                 #Graphic
@@ -283,7 +283,7 @@ def mechanics_menu():
                 name_data = 'The Data'
                 length = len(name_data)
                 print('*' * (10 + length))
-                print(name, ' ' * 6)
+                print(name_data, ' ' * 6)
                 print('*' * (10 + length))
                 print()
 
@@ -299,7 +299,7 @@ def mechanics_menu():
                 name_result = 'Circular Motion Results'
                 length = len(name_result)
                 print('=' * (10 + length))
-                print(name, ' ' * 6)
+                print(name_result, ' ' * 6)
                 print('=' * (10 + length))
                 print()
 
@@ -309,20 +309,20 @@ def mechanics_menu():
                     from mechanics.circular_motion import calculate_centripetal_acceleration
                     from mechanics.circular_motion import calculate_period
                     from mechanics.circular_motion import calculate_frequency
-                    print(f'Angular velocity = {calculate_angular_velocity(theta, time):.2f} rad/s')
-                    print(f'Centripetal acceleration = {calculate_centripetal_acceleration(theta, time, radius):.2f} rad/s²')
-                    print(f'Period = {calculate_period(theta, time):.2f} s')
-                    print(f'Frequency = {calcluate_frequency(theta, time):.2f} s^-1')
+                    print(f'Angular velocity = {calculate_angular_velocity(theta, time):.3f} rad/s')
+                    print(f'Centripetal acceleration = {calculate_centripetal_acceleration(theta, time, radius):.3f} rad/s²')
+                    print(f'Period = {calculate_period(theta, time):.3f} s')
+                    print(f'Frequency = {calculate_frequency(theta, time):.3f} s^-1')
                     print()
                 else:
                     from mechanics.circular_motion import calculate_angular_velocity_v
                     from mechanics.circular_motion import calculate_centripetal_acceleration_v
                     from mechanics.circular_motion import calculate_period_v
                     from mechanics.circular_motion import calculate_frequency_v
-                    print(f'Angular velocity = {calculate_angular_velocity_v(velocity, radius):.2f} rad/s')
-                    print(f'Centripetal acceleration = {calculate_centripetal_acceleration_v(velocity, radius):.2f} rad/s²')
-                    print(f'Period = {calculate_period_v(velocity, radius):.2f} s')
-                    print(f'Frequency = {calcluate_frequency_v(velocity, radius):.2f} s^-1')
+                    print(f'Angular velocity = {calculate_angular_velocity_v(velocity, radius):.3f} rad/s')
+                    print(f'Centripetal acceleration = {calculate_centripetal_acceleration_v(velocity, radius):.3f} rad/s²')
+                    print(f'Period = {calculate_period_v(velocity, radius):.3f} s')
+                    print(f'Frequency = {calculate_frequency_v(velocity, radius):.3f} s^-1')
                     print()
 
             #Free Fall
