@@ -1,19 +1,4 @@
-def opening():
-
-    #Title
-    name = 'AeroLab v0.1'
-    length = len(name)
-    print('=' * (10 + length))
-    print(' ' * 4, name, ' ' * 6)
-    print('=' * (10 + length))
-    
-    #Themes
-    print('Engineering Sandbox')
-    print(' 1 - Mechanics')
-    print(' 2 - Thermodynamics')
-    print(' 3 - Physics Utilities')
-    print(' 0 - Exit')
-    print('=' * (10 + length))
+from utils.usefull_tools import opening
 
 
 def main():

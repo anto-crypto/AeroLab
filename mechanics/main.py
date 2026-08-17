@@ -1,64 +1,16 @@
-import math
-
-
-def select_gravity():
-    from utils.constants import gravity
-
-    print()
-    print('Environment gravity')
-    print('1 - Earth')
-    print('2 - Mars')
-    print('3 - Moon')
-    print()
-
-    #Cheking the environment
-    while True:
-        try:
-            environment = int(input('Select the environment for the gravity: '))
-        except ValueError:
-            print('Error! Please chose one of the numbers requested.')
-
-        #Checking the G
-        if environment == 1:
-            g_x = gravity['Earth']
-            break
-        elif environment == 2:
-            g_x = gravity['Mars']
-            break
-        elif environment == 3:
-            g_x = gravity['Moon']
-            break
-        else:
-            print('Chose a number between 1 to 3.')
-
-    return g_x
-
-
-def generate_time_points(time):
-    time_list = []
-    i = 0
-    while i <= int(time):
-        time_list.append(i)
-        i += 0.5
-    time_list.append(time)
-    return time_list
-
-
+from utils.usefull_tools import (
+    mechanics_menu_decoration,
+    generate_time_points,
+    select_gravity,
+    data_decoration,
+    results_decoration
+    )
 
 def mechanics_menu():
 
     while True:
 
-        print()
-        print('Mechanics Menu')
-        print(' 1 - Projectile Motion')
-        print(' 2 - Inclined Plane')
-        print(' 3 - Circular Motion')
-        print(' 4 - Free Fall')
-        print(' 5 - Uniform Circular Motion')
-        print(' 6 - Centripetal Force')
-        print(' 0 - Back')
-        print()
+        mechanics_menu_decoration()
 
         answer = input('Select one of the options: ')
 
@@ -89,58 +41,35 @@ def mechanics_menu():
                         break
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
-
-                #The data decoration
-                print()
-                name_data = 'The Data'
-                length = len(name_data)
-                print('*' * (10 + length))
-                print(name_data, ' ' * 6)
-                print('*' * (10 + length))
-                print()
-
+                
                 #The data
+                data_decoration()
+
                 print(f'Velocity = {velocity} m/s')
                 print(f'θ = {angle}˚')
                 print(f'Gravity: {g_x} m/s²')
 
-                #Print decoration
-                print()
-                name_result = 'Projectile Results'
-                length = len(name_result)
-                print('=' * (10 + length))
-                print(name_result, ' ' * 6)
-                print('=' * (10 + length))
-                print()
-
                 #Results
-                from mechanics.projectile import calculate_flight_time
-                from mechanics.projectile import calculate_max_height
-                from mechanics.projectile import calculate_range
-                print(f'Flight time = {calculate_flight_time(velocity, angle, g_x):.3f} s')
-                print(f'Maximum height = {calculate_max_height(velocity, angle, g_x):.3f} m')
-                print(f'Range = {calculate_range(velocity, angle, g_x):.3f} m')
+                results_decoration()
+
+                from mechanics.projectile import (
+                    calculate_flight_time,
+                    calculate_max_height,
+                    calculate_range
+                )
+
+                flight_time = calculate_flight_time(velocity, angle, g_x)
+                maximum_height = calculate_max_height(velocity, angle, g_x)
+                range_x = calculate_range(velocity, angle, g_x)
+
+                print(f'Flight time = {flight_time:.3f} s')
+                print(f'Maximum height = {maximum_height:.3f} m')
+                print(f'Range = {range_x:.3f} m')
                 print()
 
                 #Graphic
-                import matplotlib.pyplot as plt
-                time_points = calculate_flight_time(velocity, angle, g_x)
-                l = generate_time_points(time_points)
-                x_list = []
-                y_list = []
-                for i in l:
-                    x = velocity * math.cos(math.radians(angle)) * i
-                    x_list.append(x)
-                    y = velocity * math.sin(math.radians(angle)) * i - 0.5 * g_x * math.pow(i, 2)
-                    y_list.append(y)
-                plt.plot(x_list, y_list, marker = '.',
-                                         markersize = 10,
-                                         markerfacecolor = 'blue')
-                plt.xlabel('Distance (m)')
-                plt.ylabel('Height (m)')
-                plt.title('Projectile Motion')
-                plt.grid(True)
-                plt.show()
+                from plotting.plots import projectile_graphic
+                projectile_graphic(velocity, angle, g_x, flight_time)
 
             #Inclined Plane
             elif theme == 2:
@@ -178,64 +107,36 @@ def mechanics_menu():
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
 
-                #The data decoration
-                print()
-                name_data = 'The Data'
-                length = len(name_data)
-                print('*' * (10 + length))
-                print(name_data, ' ' * 6)
-                print('*' * (10 + length))
-                print()
-
                 #The data
+                data_decoration()
+
                 print(f'Height = {height} m')
                 print(f'θ = {angle}˚')
                 print(f'μ = {mu}')
                 print(f'Velocity = {velocity} m/s')
                 print(f'Gravity: {g_x} m/s²')
 
-                #Print
-                print()
-                name_result = 'Inclinated Plane Results'
-                length = len(name_result)
-                print('=' * (10 + length))
-                print(name_result, ' ' * 6)
-                print('=' * (10 + length))
-                print()
-
                 #Results
-                from mechanics.inclined_plane import calculate_acceleration
-                from mechanics.inclined_plane import calculate_time
-                from mechanics.inclined_plane import calculate_final_velocity
-                print(f'Acceleration = {calculate_acceleration(mu, angle, g_x):.3f} m/s²')
-                print(f'Time = {calculate_time(height, angle, mu, g_x):.3f} s')
-                print(f'Final Velocity = {calculate_final_velocity(height, velocity, angle, mu, g_x):.3f} m/s')
+                results_decoration()
+
+                from mechanics.inclined_plane import (
+                    calculate_acceleration,
+                    calculate_time,
+                    calculate_final_velocity
+                )
+
+                acceleration = calculate_acceleration(mu, angle, g_x)
+                final_time = calculate_time(height, angle, mu, g_x)
+                final_velocity = calculate_final_velocity(height, velocity, angle, mu, g_x)
+
+                print(f'Acceleration = {acceleration:.3f} m/s²')
+                print(f'Time = {final_time:.3f} s')
+                print(f'Final Velocity = {final_velocity:.3f} m/s')
                 print()
 
                 #Graphic
-                import matplotlib.pyplot as plt
-                time_points = calculate_time(height, angle, mu, g_x)
-                acceleration = calculate_acceleration(mu, angle, g_x)
-                l = generate_time_points(time_points)
-                x_list = []
-                v_list = []
-                for i in l:
-                    x = velocity * i + 0.5 * acceleration * math.pow(i, 2)
-                    x_list.append(x)
-                    v = velocity + acceleration * i
-                    v_list.append(v)
-                figure, axes = plt.subplots(1, 2)
-                axes[0].plot(x_list, l, marker = '.')
-                axes[0].set_title('Space-Time')
-                axes[0].grid(True)
-                axes[0].set_xlabel('Space (m)')
-                axes[0].set_ylabel('Time (s)')
-                axes[1].plot(v_list, l, marker = '.')
-                axes[1].set_title('Velocity-Time')
-                axes[1].grid(True)
-                axes[1].set_xlabel('Velocity (m/s)')
-                axes[1].set_ylabel('Time (s)')
-                plt.show()
+                from plotting.plots import inclined_plane_graphic
+                inclined_plane_graphic(velocity, final_time, acceleration)
 
             #Circular Motion
             elif theme == 3:
@@ -278,51 +179,51 @@ def mechanics_menu():
                     except ValueError:
                         print('Error! Its necessary to use only numbers (with dot). Try again')
 
-                #The data decoration
-                print()
-                name_data = 'The Data'
-                length = len(name_data)
-                print('*' * (10 + length))
-                print(name_data, ' ' * 6)
-                print('*' * (10 + length))
-                print()
-
                 #The data
+                data_decoration()
                 print(f'Velocity = {velocity} m/s')
                 print(f'Radius = {radius} m')
                 if velocity == 0:
                     print(f'θ = {theta}˚')
                     print(f'Time = {time} s')
 
-                #Print
-                print()
-                name_result = 'Circular Motion Results'
-                length = len(name_result)
-                print('=' * (10 + length))
-                print(name_result, ' ' * 6)
-                print('=' * (10 + length))
-                print()
-
                 #Results
+                results_decoration()
                 if velocity == 0:
-                    from mechanics.circular_motion import calculate_angular_velocity
-                    from mechanics.circular_motion import calculate_centripetal_acceleration
-                    from mechanics.circular_motion import calculate_period
-                    from mechanics.circular_motion import calculate_frequency
-                    print(f'Angular velocity = {calculate_angular_velocity(theta, time):.3f} rad/s')
-                    print(f'Centripetal acceleration = {calculate_centripetal_acceleration(theta, time, radius):.3f} rad/s²')
-                    print(f'Period = {calculate_period(theta, time):.3f} s')
-                    print(f'Frequency = {calculate_frequency(theta, time):.3f} s^-1')
+                    from mechanics.circular_motion import (
+                        calculate_angular_velocity,
+                        calculate_centripetal_acceleration,
+                        calculate_period,
+                        calculate_frequency
+                    )
+
+                    angular_velocity = calculate_angular_velocity(theta, time)
+                    centripetal_acceleration = calculate_centripetal_acceleration(theta, time, radius)
+                    period = calculate_period(theta, time)
+                    frequency = calculate_frequency(theta, time)
+
+                    print(f'Angular velocity = {angular_velocity:.3f} rad/s')
+                    print(f'Centripetal acceleration = {centripetal_acceleration:.3f} rad/s²')
+                    print(f'Period = {period:.3f} s')
+                    print(f'Frequency = {frequency:.3f} s^-1')
                     print()
                 else:
-                    from mechanics.circular_motion import calculate_angular_velocity_v
-                    from mechanics.circular_motion import calculate_centripetal_acceleration_v
-                    from mechanics.circular_motion import calculate_period_v
-                    from mechanics.circular_motion import calculate_frequency_v
-                    print(f'Angular velocity = {calculate_angular_velocity_v(velocity, radius):.3f} rad/s')
-                    print(f'Centripetal acceleration = {calculate_centripetal_acceleration_v(velocity, radius):.3f} rad/s²')
-                    print(f'Period = {calculate_period_v(velocity, radius):.3f} s')
-                    print(f'Frequency = {calculate_frequency_v(velocity, radius):.3f} s^-1')
+                    from mechanics.circular_motion import (
+                        calculate_angular_velocity_v,
+                        calculate_centripetal_acceleration_v,
+                        calculate_period_v,
+                        calculate_frequency_v
+                    )
+
+                    angular_velocity_v = calculate_angular_velocity_v(velocity, radius)
+                    centripetal_acceleration_v = calculate_centripetal_acceleration_v(velocity, radius)
+                    period_v = calculate_period_v(velocity, radius)
+                    frequency_v = calculate_frequency_v(velocity, radius)
+
+                    print(f'Angular velocity = {angular_velocity_v:.3f} rad/s')
+                    print(f'Centripetal acceleration = {centripetal_acceleration_v:.3f} rad/s²')
+                    print(f'Period = {period_v:.3f} s')
+                    print(f'Frequency = {frequency_v:.3f} s^-1')
                     print()
 
             #Free Fall
