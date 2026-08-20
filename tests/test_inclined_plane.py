@@ -4,6 +4,7 @@ from mechanics.inclined_plane import (
     calculate_time
 )
 
+
 def test_calculate_acceleration():
     result = calculate_acceleration(0.2, 45, 9.80665)
 
@@ -18,3 +19,4 @@ def test_calculate_time():
     result = calculate_time(50, 45, 0.2, 9.80665)
 
     assert abs(result - 5.049) < 0.001
+

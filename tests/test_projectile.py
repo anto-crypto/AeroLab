@@ -4,6 +4,7 @@ from mechanics.projectile import (
     calculate_range
 )
 
+
 def test_calculate_flight_time():
     result = calculate_flight_time(100, 45, 9.80665)
 
