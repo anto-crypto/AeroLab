@@ -27,7 +27,8 @@ def main():
                     #Thermodynamics
                     continue
                 else:
-                    #Physics Utilities
+                    from physics.main import physics_menu
+                    physics_menu()
                     continue
                 
             else:

@@ -30,5 +30,5 @@ def test_calculate_period_v():
 def test_calculate_centripetal_force():
     result = calculate_centripetal_force(10, 100, 20)
 
-    assert abs(result - 50) < 0.001
+    assert abs(result - 5000) < 0.001
 

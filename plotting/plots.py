@@ -39,13 +39,14 @@ def inclined_plane_graphic(velocity, final_time, acceleration):
     axes[0].plot(l, x_list, marker = '.')
     axes[0].set_title('Space-Time')
     axes[0].grid(True)
-    axes[0].set_xlabel('Space (m)')
-    axes[0].set_ylabel('Time (s)')
+    axes[0].set_ylabel('Space (m)')
+    axes[0].set_xlabel('Time (s)')
+
     axes[1].plot(l, v_list, marker = '.')
     axes[1].set_title('Velocity-Time')
     axes[1].grid(True)
-    axes[1].set_xlabel('Velocity (m/s)')
-    axes[1].set_ylabel('Time (s)')
+    axes[1].set_ylabel('Velocity (m/s)')
+    axes[1].set_xlabel('Time (s)')
     plt.show()
 
 
@@ -64,6 +65,28 @@ def free_fall_graphic(velocity, height, g_x, fall_time):
     plt.xlabel('Distance (m)')
     plt.ylabel('Height (m)')
     plt.title('Free Fall')
+    plt.grid(True)
+    plt.show()
+
+
+def energy_graphic(mass, velocity, g_x, height):
+    t = (-velocity + math.sqrt(math.pow(velocity, 2) + 2 * g_x * height)) / g_x
+    l = generate_time_points(t)
+    k_l = []
+    u_l = []
+
+    for i in l:
+        v = velocity + g_x * i
+        h = height + velocity * i - 0.5 * g_x * math.pow(i, 2)
+
+        k = 0.5 * mass * math.pow(v, 2)
+        u = mass * g_x * h
+
+        k_l.append(k)
+        u_l.append(u)
+
+    plt.plot(l, k_l, color = 'blue')
+    plt.plot(l, u_l, color = 'red')
     plt.grid(True)
     plt.show()
 

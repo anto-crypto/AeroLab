@@ -27,6 +27,15 @@ def mechanics_menu_decoration():
     print(' 0 - Back')
     print()
 
+def physics_menu_decoration():
+    print()
+    print('Physics Utils')
+    print(' 1 - Kinematic')
+    print(' 2 - Energy')
+    print(' 3 - Momentum')
+    print(' 0 - Back')
+    print()
+
 
 def generate_time_points(time):
     time_list = []

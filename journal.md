@@ -121,3 +121,41 @@ ___16 August 2026___
  - I had some trouble with the test file while doing the calculus
  Learned:
  - to do a test file which control calculus by testing them
+
+
+
+___18 August 2026___
+
+	Today I try to make the program more comprensive by adding plot and util_tools files.
+
+ Problems:
+ - with the modifications of the program because there were thing which condivided the same elements
+ Learned:
+ - by another project I learned how to call the graphics by the function to the main file
+
+
+
+___20 August 2026___
+
+	Today added some other functions like free fall to the mechanical file and also the test file
+
+ Problems:
+ - with the circular motion file and uniform centripetal force file because had the same calculations
+
+
+
+___26 August 2026___
+
+	Added new files in Physic file
+
+ Problems:
+ - how to choose what to ask and what to output
+
+
+
+___29 August 2026___
+
+	Using matplotlib I made a graphic to show the change of the kinetic and potential energys
+
+ Problems:
+ - with the formulas because I forget the initial velocity

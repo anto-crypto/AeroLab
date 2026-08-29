@@ -19,6 +19,6 @@ def calculate_frequency_v(linear_velocity, radius):
     return frequency
 
 def calculate_centripetal_force(mass, linear_velocity, radius):
-    f = mass * linear_velocity / radius
+    f = mass * math.pow(linear_velocity, 2) / radius
     return f
 
