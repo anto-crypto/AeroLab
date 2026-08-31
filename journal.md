@@ -159,3 +159,12 @@ ___29 August 2026___
 
  Problems:
  - with the formulas because I forget the initial velocity
+
+
+
+___30 August 2026___
+
+	Today I added test for the physic file formulas
+
+ Problems:
+ - with the calculations done in the notebook and the results of the programm

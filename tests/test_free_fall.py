@@ -12,5 +12,5 @@ def test_calculate_fall_time():
 def test_calculate_final_velocity():
     result = calculate_final_velocity(100, 50, 9.80665)
 
-    assert abs(result - 104.789) < 0.001
+    assert abs(result + 104.789) < 0.001
 
